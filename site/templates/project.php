@@ -1,7 +1,5 @@
 <?php snippet('header') ?>
 
-<header class="desktop reduced">
-
 	<?php snippet('menu') ?>
 
 	<div id="container">

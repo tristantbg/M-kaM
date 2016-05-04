@@ -10,8 +10,9 @@ $desktop = 1100px
 $padding = 20px
 $dot = 6px
 
-$primary ?= white
-$secondary ?= black
+$primary ?= #000000
+$secondary ?= #FFFFFF
+$accent ?= red
 $regular = "NH", "Helvetica", sans-serif
 $bold = "NHB", "Helvetica", sans-serif
 
@@ -19,18 +20,26 @@ $bold = "NHB", "Helvetica", sans-serif
 global-reset()
 //edit()
 
-//webfont('NH', 'NH', true, 'normal')
+webfont('NH', 'NH', true, 'normal')
 webfont('NHB', 'NHB', true, 'bold')
+
+title()
+	text-transform uppercase
+	font-size 3vw
+	line-height 1em
+	letter-spacing .05em
 
 html
 	font-size 62.5%
 	
 body
-	font-family $bold
+	font-family $regular
 	text-rendering optimizeLegibility
 	font-smoothing()
 	font-size 2rem
 	line-height 1em
+	color $secondary
+	background $primary
 
 ::-webkit-scrollbar
 	display none
@@ -49,6 +58,9 @@ a, a:hover, a:visited, a:focus
 	position relative
 	cursor pointer
 
+a:hover
+	color $accent
+
 .opening
 	position fixed
 	width 100%
@@ -56,79 +68,75 @@ a, a:hover, a:visited, a:focus
 	top 0
 	left 0
 	z-index 90000
-	background #FFFFFF
+	background $primary
 	cursor pointer
-	img
-		width 142px
-		align()
-		transform(translate(-73%, -50%))
+	flexbox()
+	align-items center
+	justify-content center
+	.title
+		title()
+	.subtitle
+		margin-left .2em
+		margin-top 0.4em
 
 .no-js .opening
 	display none
 
 header
+	width 100%
 	text-align center
 	position fixed
-	width 60%
-	left 20%
-	top 50%
-	margin-top -20px
 	z-index 1000
 	hideselect()
-	transition(all, 600ms)
-	ul
-		transition(all, 600ms)
+	.top_header
+		font-size 1.2rem
+		.title
+			position fixed
+			top $padding
+			left $padding
+		.subtitle
+			position fixed
+			top $padding
+			right $padding
 
 nav.primary
-	flexbox()
-	top 50%
-	justify-content space-between
-	position relative
-	#m-production, #m-creative
-		position relative
-		transition(font-size, 600ms)
-		font-size 3rem
-	div.active::before
-		content ''
-		background url('../images/dot.png') 100% 100%
-		background-size 100% 100%
-		display block
-		width $dot
-		height $dot
-		position absolute
-		left -12px
-		top 50%
-		margin-top -($dot/2)
-	#logo
-		//align()
-		position absolute
-		top 0
-		left 50%
-		vendor(transform-style, preserve-3d)
-		transform(translateX(-73%))
-		img
-			transition()
-			width 142px
+	align()
+	position fixed
+	transition(all,500ms)
+	.category
+		.link
+			title()
+		.overview
+			display none
+			span::before
+				content '+'
+		.overview:hover, .overview.active
+			span::before
+				content 'OVERVIEW'
+		.overview::before
+			content '( '
+		.overview::after
+			content ' )'
+	.category.active
+		.overview
+			display inline-block
 
 ul.secondary
 	position fixed
-	top calc(100% - 30px)
+	bottom $padding
 	-webkit-transform-style: preserve-3d;
 	-moz-transform-style: preserve-3d;
 	-ms-transform-style: preserve-3d;
 	-o-transform-style: preserve-3d;
 	transform-style: preserve-3d;
 	left: 50%;
-	-webkit-transform: translate(-50%,-50%);
-	-moz-transform: translate(-50%,-50%);
-	-ms-transform: translate(-50%,-50%);
-	-o-transform: translate(-50%,-50%);
-	transform: translate(-50%,-50%);
+	transform(translate(-50%,-50%))
 	display inline-flex
 	font-size 1.2rem
 	li
 		position relative
 		margin 0 5px
+		line-height .5em
 	li.active
 		margin 0 5px 0 16px
 	li.active::before
@@ -142,91 +150,6 @@ ul.secondary
 		left -12px
 		top 50%
 		margin-top -($dot/2)
-
-.credits
-	position fixed
-	width 200px
-	height 15px
-	bottom -5px
-	-webkit-transform-style: preserve-3d;
-	-moz-transform-style: preserve-3d;
-	-ms-transform-style: preserve-3d;
-	-o-transform-style: preserve-3d;
-	transform-style: preserve-3d;
-	left: 50%;
-	-webkit-transform: translate(-50%,-50%);
-	-moz-transform: translate(-50%,-50%);
-	-ms-transform: translate(-50%,-50%);
-	-o-transform: translate(-50%,-50%);
-	transform: translate(-50%,-50%);
-	line-height 0
-	ul
-		display inline-flex
-		font-size 1.2rem
-		//margin-top 6px
-	li
-		transition()
-		visibility hidden
-		opacity 0
-		position relative
-		margin 0 5px
-		cursor pointer
-		line-height 1em
-	li.active
-		margin 0 5px 0 16px
-	li.active::before
-		content ''
-		background url('../images/dot.png') 100% 100%
-		background-size 100% 100%
-		display block
-		width $dot
-		height $dot
-		position absolute
-		left -12px
-		top 50%
-		margin-top -($dot/2)
-	span.dot
-		transition()
-		opacity 1
-		text-align center
-		position absolute
-		top 50%
-		left 50%
-		width 20px
-		margin -1px -10px
-	span.dot::before
-		content ''
-		background url('../images/dot.png') 100% 100%
-		background-size 100% 100%
-		display block
-		width $dot
-		height $dot
-		position absolute
-		top 50%
-		margin-top -($dot/2)
-
-.credits:hover, body#legal .credits, body#credits .credits
-	li
-		visibility visible
-		opacity 1
-	span
-		opacity 0
-		visibility hidden
-
-header.reduced
-	top ($padding * 2)
-	nav.primary
-		top 0
-		#m-production, #m-creative
-			font-size 2rem
-		#logo
-			img
-				width 70px
-				+below($desktop)
-					width 90px
-	ul.secondary
-		bottom initial
-		top 60px
 
 nav.mobile
 	transition()

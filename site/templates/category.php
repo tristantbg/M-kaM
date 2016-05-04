@@ -4,9 +4,7 @@ $projects = $page->children()->visible()->flip();
 
 <?php snippet('header') ?>
 
-<header class="desktop reduced">
-
-	<?php snippet('menu') ?>
+<?php snippet('menu') ?>
 
 	<div id="container">
 
@@ -35,7 +33,7 @@ $projects = $page->children()->visible()->flip();
 					data-optimumx="1.5" 
 					alt="<?php echo $project->title()->html() ?>">
 					<noscript>
-						<<img src="" alt=""> src="<?php echo $image->url() ?>" alt="<?php echo $project->title()->html() ?>">
+						<img src="<?php echo $image->url() ?>" alt="<?php echo $project->title()->html() ?>">
 					</noscript>
 				<?php endif ?>
 

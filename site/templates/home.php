@@ -1,10 +1,8 @@
 <?php snippet('header') ?>
 
 <div class="opening">
-	<img src="<?php echo url('assets/images/CMM_logo.svg') ?>" onerror="this.src='<?php echo url('assets/images/CMM_logo.png') ?>'; this.onerror=null;" alt="Code MM">
+	<div class="title"><?php echo $site->title()->html() ?></div><div class="subtitle"><?php echo $site->subtitle()->html() ?></div>
 </div>
-
-<header class="desktop home">
 
 <?php snippet('menu') ?>
 

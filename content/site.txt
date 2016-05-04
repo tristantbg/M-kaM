@@ -1,4 +1,4 @@
-Title: Code MM
+Title: Mika Mizutani
 
 ----
 
@@ -19,3 +19,7 @@ Customcss:
 ----
 
 Googleanalytics: UA-73806641-1
+
+----
+
+Subtitle: ( Styling & Creative Consulting )
