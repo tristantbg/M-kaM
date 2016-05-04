@@ -22,7 +22,7 @@ $projects = $page->children()->visible()->flip();
 					$image = $project->featuredimage()->toFile();
 					$srcset = '';
 					for ($i = 600; $i <= 2100; $i += 300) {
-						if($i<2100): $srcset .= resizeOnDemand($image, $i) . ' ' . $i . 'w,';
+						if($i<2100): $srcset .= $image->width($i)->url() . ' ' . $i . 'w,';
 						else: $srcset .= $image->url() . ' ' . $i . 'w,';
 						endif;
 					}
