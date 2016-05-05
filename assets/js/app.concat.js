@@ -8,11 +8,22 @@ $(function() {
         init: function() {
             jQuery(document).ready(function($) {
                 var $opening = $('.opening');
+                var $menu = $('header nav.primary');
                 $opening.click(function(event) {
                     $(this).fadeOut(500);
                 });
-                app.sizeSet();
+                if ($(".wrap").hasClass('category')) {
+                    $("body").mousewheel(function(event, delta) {
+                        this.scrollLeft -= (delta);
+                        event.preventDefault();
+                    });
+                    $menu.addClass('reduced');
+                }
+                $(window).load(function() {
+                 app.sizeSet();
                 app.sliders();
+                });
+                
                 $('#mce-error-response, #mce-success-response').bind("DOMSubtreeModified", function() {
                     $('form.validate .mc-field-group').hide();
                 });
@@ -27,6 +38,11 @@ $(function() {
                 });
                 $('.project .inner').click(function(event) {
                     window.location = $(this).data('target');
+                });
+                $('.project .inner').hover(function() {
+                  $menu.css('opacity', 0);
+                }, function() {
+                  $menu.css('opacity', 1);
                 });
                 $('.overview').click(function(event) {
                     $(this).toggleClass('active');

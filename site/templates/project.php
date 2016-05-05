@@ -1,5 +1,7 @@
 <?php snippet('header') ?>
 
+<header class="project">
+
 	<?php snippet('menu') ?>
 
 	<div id="container">
