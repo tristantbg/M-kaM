@@ -85,6 +85,7 @@ header
 	position fixed
 	z-index 1000
 	hideselect()
+	pointer-events none
 	a:hover
 		color $accent
 	.top_header
@@ -99,35 +100,41 @@ header
 			right $padding
 
 nav.primary
-	align()
-	position fixed
-	transition(all, 200ms)
-	.category
-		transition(all,500ms)
-		overflow hidden
-		.link
-			title()
-		.overview
-			display none
-			span::before
-				content '+'
-		.overview:hover, .overview.active
-			span::before
-				content 'OVERVIEW'
-		.overview::before
-			content '( '
-		.overview::after
-			content ' )'
-	.category.active
-		.overview
-			display inline-block
+	flexbox()
+	align-items center
+	justify-content center
+	flex-direction column
+	height 100vh
+	pointer-events none
+	.inner
+		pointer-events auto
+		transition(all, 200ms)
+		.category
+			transition(all,500ms)
+			overflow hidden
+			.link
+				title()
+			.overview
+				display none
+				span::before
+					content '+'
+			.overview:hover, .overview.active
+				span::before
+					content 'OVERVIEW'
+			.overview::before
+				content '( '
+			.overview::after
+				content ' )'
+		.category.active
+			.overview
+				display inline-block
 
 header.category
 	nav.primary
 		.category
 			max-height 0
 			opacity 0
-			transform(translateY(10%))
+			transform(translateY(-20%))
 		.category.active
 			max-height 2em
 			opacity 1
@@ -154,6 +161,7 @@ ul.secondary
 	transform(translate(-50%,-50%))
 	display inline-flex
 	font-size 1.2rem
+	pointer-events auto
 	li
 		position relative
 		margin 0 5px
