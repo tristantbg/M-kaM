@@ -40,6 +40,7 @@ body
 	line-height 1em
 	color $secondary
 	background $primary
+	overflow-y hidden
 
 ::-webkit-scrollbar
 	display none
@@ -70,11 +71,27 @@ a, a:hover, a:visited, a:focus
 	flexbox()
 	align-items center
 	justify-content center
+	opacity 1
+	visibility visible
+	transition(all,1000ms)
+	.inner
+		width 100%
+		overflow hidden
+		height 2em
+		text-align center
+		transition(height,500ms)
 	.title
 		title()
+		display inline-block
 	.subtitle
+		display inline-block
 		margin-left .2em
 		margin-top 0.4em
+.opening.closed
+	opacity 0
+	visibility hidden
+	.inner
+		height 0
 
 .no-js .opening
 	display none
@@ -83,6 +100,8 @@ header
 	width 100%
 	text-align center
 	position fixed
+	top 0
+	left 0
 	z-index 1000
 	hideselect()
 	pointer-events none
@@ -99,53 +118,67 @@ header
 			top $padding
 			right $padding
 
-nav.primary
-	flexbox()
-	align-items center
-	justify-content center
-	flex-direction column
-	height 100vh
-	pointer-events none
-	.inner
-		pointer-events auto
-		transition(all, 200ms)
-		.category
-			transition(all,500ms)
-			overflow hidden
-			.link
-				title()
-			.overview
-				display none
-				span::before
-					content '+'
-			.overview:hover, .overview.active
-				span::before
-					content 'OVERVIEW'
-			.overview::before
-				content '( '
-			.overview::after
-				content ' )'
-		.category.active
-			.overview
-				display inline-block
+header
+	nav.primary
+		flexbox()
+		align-items center
+		justify-content center
+		flex-direction column
+		height 100vh
+		pointer-events none
+		.inner
+			pointer-events auto
+			transition(all, 200ms)
+			.category
+				max-height 2em
+				transform(translateY(0))
+				transition(all,500ms)
+				overflow hidden
+				.link
+					title()
+				.overview
+					display none
+					span::before
+						content '+'
+				.overview:hover, .overview.active
+					span::before
+						content 'OVERVIEW'
+				.overview::before
+					content '( '
+				.overview::after
+					content ' )'
+			.category.active
+				.overview
+					display inline-block
 
-header.category
+header.category, header.reduced
 	nav.primary
 		.category
 			max-height 0
-			opacity 0
+			//opacity 0
 			transform(translateY(-20%))
 		.category.active
 			max-height 2em
-			opacity 1
+			//opacity 1
 			transform(translateY(0))
 	nav.primary:hover
 		.category
 			max-height 2em
-			opacity 1
+			//opacity 1
+			transform(translateY(0))
+			
+header.reduced
+	nav.primary:hover
+		.category
+			max-height 0
+			//opacity 0
+			transform(translateY(-20%))
+		.category.active
+			max-height 2em
+			//opacity 1
 			transform(translateY(0))
 
-header.project
+header.project, header.page
 	nav.primary
 		display none
 
@@ -245,12 +278,10 @@ footer
 	+below($desktop)
 		width 80%
 	p
-		font-size 2rem
+		font-size 1.6rem
 		text-align center
 		line-height 1.2em
 		margin-bottom 1em
-		+below($desktop)
-			font-size 1.8rem
 
 .lazyload, .lazyloading
 	opacity 0
@@ -374,7 +405,7 @@ input:focus, textarea:focus
 .index-btn.back
 	display block
 
-.category.list
+.wrap.category.list
 	//margin-top 100px
 	width 100%
 	margin-left 80%
@@ -431,6 +462,7 @@ input:focus, textarea:focus
 					text-align center
 					position relative
 				p
+					font-size 2rem
 					text-transform lowercase
 					margin-bottom 0
 	.project:last-child
@@ -442,42 +474,40 @@ input:focus, textarea:focus
 				opacity 1
 
 
-.category.index
-	margin-top 100px
-	flexbox()
-	justify-content center
-	flex-wrap wrap
-	width 65%
+.wrap.category.index
+	position fixed
+	top 0
+	left 100%
+	width 100%
+	height 100vh
+	background $primary
+	overflow-y scroll
+	margin-top 4vh
+	transition(left, 1000ms)
 	+below($desktop)
 		width 100%
-	height 100vh
 	.index-btn.close
 		display block
-	.project:nth-child(even)
-		margin 0 5% 5% 0
-	.project:nth-child(odd)
-		margin 0 15% 0 0
-	.project:nth-child(3n)
-		width 30%
-		margin 4%
-	.project:nth-child(6n)
-		margin 0 25% 10% 0
 	.project
-		width 23%
+		width 10%
+		height 13vh
 		float left
+		margin 5vh 0
+		text-align center
 		.inner
 			position relative
 			width 100%
-			height auto
+			height 100%
 			transform(perspective(1px))
 			cursor pointer
-			padding $padding/2
+			padding 0 5%
 			box-sizing border-box
 			img
 				transition(all, 700ms)
-				width 100%
 				vendor(filter,grayscale(1))
 				vendor(backface-visibility, hidden)
+				max-height 100%
+				max-width 100%
 			.infos
 				display none
 				transition(all, 1500ms)
@@ -513,6 +543,10 @@ input:focus, textarea:focus
 				vendor(filter,grayscale(0))
 			.infos
 				opacity 1
+
+body.indexOpened
+	.wrap.category.index
+		left 0
 ////////////////////////////////////////// PROJECT
 
 .projectslider
@@ -550,6 +584,13 @@ input:focus, textarea:focus
 	right $padding
 	z-index 2147483648
 	line-height 1em
+	
+//// PAGE
+
+#container.page
+	flexbox()
+	align-items center
+	height 100vh
 	
 /////// MOBILE
 

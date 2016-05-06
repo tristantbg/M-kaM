@@ -1,10 +1,8 @@
-<?php snippet('header') ?>
-
-<header class="project">
-
-	<?php snippet('menu') ?>
-
-	<div id="container" class="project">
+<?php
+if(kirby()->request()->ajax()) {
+	$page = page($uri);
+	$site = site();
+	?>
 
 		<div class="projectslider royalSlider rsDefault">
 
@@ -44,8 +42,8 @@
 		
 		<div class="index-btn back"><a href="<?php echo $page->parent()->url() ?>">back to the index</a></div>
 
-		<div class="wrap">
-
-		</div>
-
-			<?php snippet('footer') ?>
+		<?php
+	}
+	else {
+		header::status('404');
+	}

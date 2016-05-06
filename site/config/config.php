@@ -36,6 +36,12 @@ c::set('sitemap.exclude', array('error', 'infos', 'work'));
 c::set('thumb.quality', 100);
 c::set('sitemap.important', array('contact'));
 c::set('routes', array(
+	array(
+        'pattern' => '(:all)/ajax',
+        'action'  => function($uri) {
+          tpl::load(kirby()->roots()->templates() . DS . 'ajax.php', array('uri' => $uri), false );
+        }
+    ),
     array(
         'pattern' => 'infos',
         'action'  => function($uri) {
