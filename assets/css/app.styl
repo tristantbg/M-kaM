@@ -544,9 +544,23 @@ input:focus, textarea:focus
 			.infos
 				opacity 1
 
+#container.category
+	.ajax
+		position fixed
+		width 100%
+		height 100%
+		top 0
+		left 0
+		background $primary
+		transition(top,600ms)
+	.ajax.hidden
+		top 100%
+
 body.indexOpened
 	.wrap.category.index
 		left 0
+		
+
 ////////////////////////////////////////// PROJECT
 
 .projectslider

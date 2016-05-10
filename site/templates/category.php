@@ -18,7 +18,7 @@ $projects = $page->children()->visible()->flip();
 					<?php foreach($projects as $project): ?>
 						<td>
 							<div class="project">
-								<div class="inner" data-target="<?php echo $project->url() ?>">
+								<div class="inner link" data-target="<?php echo $project->url() ?>">
 
 									<?php if(!$project->featuredimage()->empty()):
 
@@ -74,7 +74,7 @@ $projects = $page->children()->visible()->flip();
 
 		<?php foreach($projects as $project): ?>
 			<div class="project">
-				<div class="inner" data-target="<?php echo $project->url() ?>">
+				<div class="inner link" data-target="<?php echo $project->url() ?>">
 
 					<?php if(!$project->featuredimage()->empty()):
 					$image = $project->featuredimage()->toFile();
@@ -106,6 +106,10 @@ $projects = $page->children()->visible()->flip();
 
 	<?php endforeach ?>
 
+</div>
+
+<div class="ajax hidden">
+	
 </div>
 
 <?php snippet('footer') ?>
