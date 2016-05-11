@@ -40,7 +40,7 @@ if(kirby()->request()->ajax()) {
 			<p><?php echo $page->director()->html() ?></p>
 		</div>
 		
-		<div class="index-btn back"><a href="<?php echo $page->parent()->url() ?>">back to the index</a></div>
+		<div class="index-btn back"><a class="link" href="<?php echo $page->parent()->url() ?>">back to the index</a></div>
 
 		<?php
 	}

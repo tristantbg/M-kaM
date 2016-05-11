@@ -4,15 +4,24 @@
 
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link rel="dns-prefetch" href="//www.google-analytics.com">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-	<title><?php echo $site->title()->html() ?> | <?php echo $page->title()->html() ?></title>
+	<link rel="canonical" href="<?php echo html($page->url()) ?>" />
+	<?php if($page->isHomepage()): ?>
+      <title><?php echo $site->title()->html() ?></title>
+    <?php else: ?>
+      <title><?php echo $site->title()->html() ?> | <?php echo $page->title()->html(); if (!$page->subtitle()->empty()) { echo ', '.$page->subtitle()->html(); } ?></title>
+    <?php endif ?>
 	<meta name="description" content="<?php echo $site->description()->html() ?>">
+	<meta name="robots" content="index,follow" />
 	<meta name="keywords" content="<?php echo $site->keywords()->html() ?>">
-	<meta property="og:url" content="<?php echo $site->homePage()->url() ?>"/>
-	<meta property="og:image" content="<?= url('assets/images/og_image.jpg') ?>"/>
+	<meta name="DC.Title" content="<?php echo $page->title()->html() ?>" />
+    <meta name="DC.Description" content="<?php echo $site->description()->html() ?>"/ >
+    <meta property="og:description" content="<?php echo $site->description()->html() ?>" />
+    <meta itemprop="name" content="<?php echo $site->title()->html() ?> | <?php echo $page->title()->html(); if (!$page->subtitle()->empty()) { echo ', '.$page->subtitle()->html(); } ?>">
+    <meta itemprop="description" content="<?php echo $site->description()->html() ?>">
 	<link rel="shortcut icon" href="<?= url('assets/images/favicon.ico') ?>">
 	<link rel="icon" href="<?= url('assets/images/favicon.ico') ?>" type="image/x-icon">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 	<?php 
 	echo css('assets/css/app.min.css');

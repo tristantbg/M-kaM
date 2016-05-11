@@ -4,7 +4,7 @@ $menu = $pages->find('infos')->children()->visible();
 ?>
 
 	<div class="top_header">
-		<div class="title"><?php echo $site->title()->html() ?></div><div class="subtitle"><?php echo $site->subtitle()->html() ?></div>
+		<div class="title"><a href="<?php echo $site->homePage()->url() ?>"><?php echo $site->title()->html() ?></a></div><div class="subtitle"><a href="<?php echo $site->homePage()->url() ?>"><?php echo $site->subtitle()->html() ?></a></div>
 	</div>
 
 	<nav class="primary">

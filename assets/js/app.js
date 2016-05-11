@@ -1,12 +1,14 @@
 /* globals $:false */
 var width = $(window).width(),
     height = $(window).height(),
+    $body,
     pslide, hslide,
     isMobile = false;
 $(function() {
     var app = {
         init: function() {
             jQuery(document).ready(function($) {
+                $body = $('body');
                 var $opening = $('.opening');
                 var $menu = $('header nav.primary');
                 $opening.click(function(event) {
@@ -23,19 +25,10 @@ $(function() {
                     app.deferImages();
                     $(".loader").fadeOut("fast");
                     $("#container").css('opacity', '1');
-                    //app.sliders();
+                    app.sliders();
                 });
                 $('#mce-error-response, #mce-success-response').bind("DOMSubtreeModified", function() {
                     $('form.validate .mc-field-group').hide();
-                });
-                $fsCloseBtn = $('.fullscreen.close');
-                $('.fullscreen.open').click(function(event) {
-                    pslide.enterFullscreen();
-                    $fsCloseBtn.show();
-                });
-                $('.fullscreen.close').click(function(event) {
-                    pslide.exitFullscreen();
-                    $fsCloseBtn.hide();
                 });
                 $('.wrap.category.list .project .inner').hover(function() {
                     $menu.css('opacity', 0);
@@ -46,7 +39,7 @@ $(function() {
                     $(this).toggleClass('active');
                     $('body').toggleClass('indexOpened');
                 });
-                $('.link').click(function() {
+                $('.link').click(function(event) {
                     event.preventDefault();
                     newLocation = this.href;
                     el = $(this);
@@ -58,13 +51,21 @@ $(function() {
                         setTimeout(function() {
                             $('#container').fadeOut(300, newpage);
                         }, 500);
-                    }
-                    else if (el.is('.inner')) {
+                    } else if (el.is('.inner')) {
                         app.loadContent(el.data('target') + '/ajax', $('.ajax'));
-                        history.pushState(null, null, el.data('target'));
-                    }
-                    else {
+                        history.pushState('project', null, el.data('target'));
+                    } else {
                         newpage();
+                    }
+                });
+                window.addEventListener('popstate', function(e) {
+                    var page = e.state;
+                    console.log(page);
+                    if (page == null) {
+                        $('.ajax').addClass('hidden');
+                        $body.removeClass('project');
+                    } else {
+                        app.loadContent(el.data('target') + '/ajax', $('.ajax'));
                     }
                 });
             });
@@ -105,10 +106,28 @@ $(function() {
             });
             pslide = $(".projectslider.royalSlider").data('royalSlider');
             $('.rsNav').before($('.fullscreen.open'));
-            pslide.ev.on('rsAfterContentSet', function() {
-                pslide.updateThumbsSize();
-                $('.ajax').removeClass('hidden');
+            $fsCloseBtn = $('.fullscreen.close');
+            $('.fullscreen.open').on("click", function(event) {
+                pslide.enterFullscreen();
+                $fsCloseBtn.show();
             });
+            $('.fullscreen.close').on("click", function(event) {
+                pslide.exitFullscreen();
+                $fsCloseBtn.hide();
+            });
+            $('.ajax .index-btn a').click(function(event) {
+                event.preventDefault();
+                history.pushState(null, null, $(this).attr('href'));
+                $('.ajax').addClass('hidden');
+                $body.removeClass('project');
+            });
+            if (pslide) {
+                pslide.ev.on('rsAfterContentSet', function() {
+                    pslide.updateThumbsSize();
+                    $('.ajax').removeClass('hidden');
+                    $body.addClass('project');
+                });
+            }
         },
         loadContent: function(url, target) {
             $.ajax({
