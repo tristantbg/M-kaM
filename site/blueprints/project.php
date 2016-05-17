@@ -23,11 +23,10 @@ fields:
     width: 1/3
   featuredimage:
     label: Image
-    type: selector
+    type: select
+    options: images
     mode:  single
     width: 1/3
-    types:
-        - image
   medias:
     label: Medias
     type: builder
@@ -40,10 +39,9 @@ fields:
         fields:
           imagefile:
             label: Image
-            type: selector
+            type: select
             mode:  single
-            types:
-                - image
+            options: images
       video:
         entry: >
           Link : {{url}}
@@ -51,10 +49,9 @@ fields:
         fields:
           placeholder:
             label: Placeholder image
-            type: selector
+            type: select
             mode:  single
-            types:
-                - image
+            options: images
           url:
             label: Link URL
             help: Youtube or Vimeo URL

@@ -17,6 +17,33 @@
 	<meta name="keywords" content="<?php echo $site->keywords()->html() ?>">
 	<meta name="DC.Title" content="<?php echo $page->title()->html() ?>" />
     <meta name="DC.Description" content="<?php echo $site->description()->html() ?>"/ >
+    <?php if($page->isHomepage()): ?>
+      <meta property="og:title" content="<?php echo $site->title()->html() ?>" />
+    <?php else: ?>
+      <meta property="og:title" content="<?php echo $site->title()->html() ?> | <?php echo $page->title()->html(); if (!$page->subtitle()->empty()) { echo ', '.$page->subtitle()->html(); } ?>" />
+    <?php endif ?>
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<?php echo html($page->url()) ?>" />
+    
+    <?php if($page->content()->name() == "project"): ?>
+	      <?php foreach($page->medias()->toStructure()->flip() as $index => $media): ?>
+	      	<?php if($index < 4):?>
+	    	<?php if($media->_fieldset() == 'image'):?>
+			<?php if($media->imagefile()->toFile() !== null):?>
+				<?php $image = $media->imagefile()->toFile()->resize(1200)->url(); ?>
+				<meta property="og:image" content="<?php echo $image ?>" />
+			<?php endif ?>
+		<?php endif ?>
+		<?php endif ?>
+		<?php endforeach ?>
+	<?php elseif($page->content()->name() == "category"): ?>
+		<meta property="og:image" content="<?php echo $page->children()->visible()->flip()->first()->featuredimage()->toFile()->resize(1200)->url() ?>" />
+	<?php else: ?>
+		<?php if(!$site->ogimage()->empty()): ?>
+			<meta property="og:image" content="<?= $site->ogimage()->toFile()->width(1200)->url() ?>"/>
+		<?php endif ?>
+    <?php endif ?>
+
     <meta property="og:description" content="<?php echo $site->description()->html() ?>" />
     <meta itemprop="name" content="<?php echo $site->title()->html() ?> | <?php echo $page->title()->html(); if (!$page->subtitle()->empty()) { echo ', '.$page->subtitle()->html(); } ?>">
     <meta itemprop="description" content="<?php echo $site->description()->html() ?>">
@@ -39,3 +66,5 @@
 
 </head>
 <body id="<?php echo $page->uid() ?>">
+
+<div class="loader"></div>

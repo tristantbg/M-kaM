@@ -27,10 +27,22 @@
 						<a class="rsImg" href="<?php echo $image->width(1200)->url() ?>"><img src="<?php echo $image->width(200)->url() ?>" class="rsTmb" /></a>
 					<?php endif ?>
 				<?php endif ?>
-				<?php $mediaindex++ ?>
 			<?php endforeach ?>
 
 		</div>
+
+		<?php foreach($page->medias()->toStructure() as $media): ?>
+				<?php if($media->_fieldset() == 'image'):?>
+					<?php if($media->imagefile()->toFile() !== null):?>
+						<?php 
+						$image = $media->imagefile()->toFile();
+						?>
+						<noscript>
+						<img src="<?php echo resizeOnDemand($image, 1200) ?>" alt="<?php echo $page->title()->html(); if (!$page->subtitle()->empty()) { echo ', '.$page->subtitle()->html(); } ?>">
+						</noscript>
+					<?php endif ?>
+				<?php endif ?>
+			<?php endforeach ?>
 
 		<div class="fullscreen open">go fullscreen</div>
 		<div class="fullscreen close">back</div>

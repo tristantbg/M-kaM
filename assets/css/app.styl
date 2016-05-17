@@ -29,6 +29,12 @@ title()
 	line-height 1em
 	letter-spacing .05em
 
+mobiletitle()
+	text-transform uppercase
+	font-size 3rem
+	line-height 1em
+	letter-spacing .05em
+
 html
 	font-size 62.5%
 	
@@ -41,6 +47,9 @@ body
 	color $secondary
 	background $primary
 	overflow-y hidden
+	max-width 100vw
+	+below($desktop)
+		font-size 1rem
 
 ::-webkit-scrollbar
 	display none
@@ -77,12 +86,16 @@ a, a:hover, a:visited, a:focus
 	.inner
 		width 100%
 		overflow hidden
-		height 2em
+		height 3vw
 		text-align center
 		transition(height,500ms)
+		+below($desktop)
+			height 5rem
 	.title
 		title()
 		display inline-block
+		+below($desktop)
+			mobiletitle()
 	.subtitle
 		display inline-block
 		margin-left .2em
@@ -131,12 +144,16 @@ header
 			pointer-events auto
 			transition(all, 200ms)
 			.category
-				max-height 7rem
+				max-height 3vw
 				transform(translateY(0))
 				transition(all,500ms)
 				overflow hidden
+				+below($desktop)
+					max-height 3rem
 				.link
 					title()
+					+below($desktop)
+						mobiletitle()
 				.overview
 					display none
 					span::before
@@ -151,6 +168,13 @@ header
 			.category.active
 				.overview
 					display inline-block
+					+below($desktop)
+						display none
+
+header.category
+	nav.primary
+		+below($desktop)
+			display none
 
 header.category, header.reduced
 	nav.primary
@@ -159,14 +183,18 @@ header.category, header.reduced
 			//opacity 0
 			transform(translateY(-20%))
 		.category.active
-			max-height 2em
+			max-height 3vw
 			//opacity 1
 			transform(translateY(0))
+			+below($desktop)
+				max-height 3rem
 	nav.primary:hover
 		.category
-			max-height 2em
+			max-height 3vw
 			//opacity 1
 			transform(translateY(0))
+			+below($desktop)
+				max-height 3rem
 			
 header.reduced
 	nav.primary:hover
@@ -175,9 +203,11 @@ header.reduced
 			//opacity 0
 			transform(translateY(-20%))
 		.category.active
-			max-height 2em
+			max-height 3vw
 			//opacity 1
 			transform(translateY(0))
+			+below($desktop)
+				max-height 3rem
 
 header.project, header.page, body.project
 	nav.primary
@@ -271,6 +301,27 @@ footer
 #container
 	transition()
 	opacity 0
+	width 100%
+	height 100%
+	max-width 100vw
+	max-height 100vh
+
+.loader
+	transition()
+	width 100%
+	height 100%
+	position fixed
+	top 0
+	left 0
+	z-index 500
+	visibility hidden
+	opacity 0
+	background rgba(0,0,0,0.5) url('../images/loader.gif') center no-repeat
+	background-size 15px
+
+.loader.loading
+	visibility visible
+	opacity 1
  
 .wrap
 	width 40%
@@ -283,6 +334,8 @@ footer
 		text-align center
 		line-height 1.2em
 		margin-bottom 1em
+		+below($desktop)
+			font-size 1rem
 
 .lazyload, .lazyloading
 	opacity 0
@@ -553,6 +606,7 @@ input:focus, textarea:focus
 		top 0
 		left 0
 		background $primary
+		z-index 900
 		transition(top,600ms)
 	.ajax.hidden
 		top 100%

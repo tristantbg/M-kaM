@@ -23,7 +23,6 @@ $(function() {
                 $(window).load(function() {
                     app.sizeSet();
                     app.deferImages();
-                    $(".loader").fadeOut("fast");
                     $("#container").css('opacity', '1');
                     app.sliders();
                 });
@@ -126,10 +125,13 @@ $(function() {
                     pslide.updateThumbsSize();
                     $('.ajax').removeClass('hidden');
                     $body.addClass('project');
+                    setTimeout(function(){$('.loader').removeClass('loading');},600);
+                    
                 });
             }
         },
         loadContent: function(url, target) {
+            $('.loader').addClass('loading');
             $.ajax({
                 url: url,
                 success: function(data) {
