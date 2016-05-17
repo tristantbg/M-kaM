@@ -38,7 +38,7 @@ $projects = $page->children()->visible()->flip();
 									data-optimumx="1.5" 
 									alt="<?php echo $project->title()->html() ?>">
 									<noscript>
-										<img src="<?php echo resizeOnDemand($image, 1200) ?>" alt="<?php echo $project->title()->html(); if (!$page->subtitle()->empty()) { echo ', '.$project->subtitle()->html(); } ?>">
+										<img src="<?php echo resizeOnDemand($image, 1200) ?>" alt="<?php echo $project->title()->html(); if (!$project->subtitle()->empty()) { echo ', '.$project->subtitle()->html(); } ?>">
 									</noscript>
 								<?php endif ?>
 
