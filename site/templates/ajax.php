@@ -22,7 +22,9 @@ if(kirby()->request()->ajax()) {
 						<?php 
 						$image = $media->imagefile()->toFile();
 						?>
-						<a class="rsImg" href="<?php echo $image->width(1200)->url() ?>"><img src="<?php echo $image->width(200)->url() ?>" class="rsTmb" /></a>
+						<a class="rsImg" href="<?php echo $image->width(1200)->url() ?>">
+						<img src="<?php echo $image->width(200)->url() ?>" class="rsTmb" />
+						</a>
 					<?php endif ?>
 				<?php endif ?>
 				<?php $mediaindex++ ?>
