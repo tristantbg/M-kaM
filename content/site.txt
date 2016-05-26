@@ -22,4 +22,8 @@ Googleanalytics: UA-73806641-1
 
 ----
 
-Subtitle: ( Styling & Creative Consulting )
+Subtitle: Styling & Creative Consulting
+
+----
+
+Ogimage: 

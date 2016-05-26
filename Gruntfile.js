@@ -2,7 +2,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         concat: {
             plugins: {
-                src: ['assets/lib/jquery.royalslider/jquery.royalslider.min.js', 'assets/lib/jquery-mousewheel/jquery.mousewheel.min.js', 'assets/lib/lazysizes/lazysizes.min.js', 'assets/lib/lazysizes/plugins/optimumx/ls.optimumx.min.js', 'assets/oembed/oembed.min.js'],
+                src: ['assets/lib/jquery.cookie/jquery.cookie.js', 'assets/lib/jquery.royalslider/jquery.royalslider.min.js', 'assets/lib/jquery-mousewheel/jquery.mousewheel.min.js', 'assets/lib/lazysizes/lazysizes.min.js', 'assets/lib/lazysizes/plugins/optimumx/ls.optimumx.min.js', 'assets/oembed/oembed.min.js'],
                 dest: 'assets/js/plugins.concat.js'
             },
             js: {

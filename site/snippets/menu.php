@@ -17,11 +17,16 @@ $menu = $pages->find('infos')->children()->visible();
 		<?php endforeach ?>
 		</div>
 	</nav>
-	<ul class="secondary">
-		<?php foreach($menu as $p): ?>
+
+	<div class="secondary">
+		<span class="dot"></span>
+		<ul>
+			<?php foreach($menu as $p): ?>
 			<li id="m-<?php echo $p->uid() ?>" <?php e($p->isOpen(), ' class="active"') ?> ><a class='link' href="<?php echo $p->url() ?>"><?php echo $p->title()->html() ?></a></li>
 		<?php endforeach ?>
-	</ul>
+		</ul>
+
+	</div>
 	
 	<nav class="mobile">
 

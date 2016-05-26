@@ -37,6 +37,7 @@ mobiletitle()
 
 html
 	font-size 62.5%
+	background $primary
 	
 body
 	font-family $regular
@@ -158,7 +159,10 @@ header
 					display none
 					span::before
 						content '+'
-				.overview:hover, .overview.active
+				.overview:hover
+					span::before
+						content 'PROJECT VIEW'
+				.overview.active:hover
 					span::before
 						content 'OVERVIEW'
 				.overview::before
@@ -213,23 +217,21 @@ header.project, header.page, body.project
 	nav.primary
 		display none
 
-ul.secondary
+.secondary
 	position fixed
 	bottom $padding
-	-webkit-transform-style: preserve-3d;
-	-moz-transform-style: preserve-3d;
-	-ms-transform-style: preserve-3d;
-	-o-transform-style: preserve-3d;
-	transform-style: preserve-3d;
-	left: 50%;
+	vendor(transform-style, preserve-3d)
+	left 50%
 	transform(translate(-50%,-50%))
 	display inline-flex
 	font-size 1.2rem
 	pointer-events auto
 	li
+		transition()
 		position relative
 		margin 0 5px
 		line-height .5em
+		opacity 0
 	li.active
 		margin 0 5px 0 16px
 	li.active::before
@@ -241,6 +243,24 @@ ul.secondary
 		height $dot
 		position absolute
 		left -12px
+		top 50%
+		margin-top -($dot/2)
+	span.dot
+		transition()
+		opacity 1
+		text-align center
+		position absolute
+		top 50%
+		left 50%
+		margin-left -($dot/2)
+	span.dot::before
+		content ''
+		background url('../images/dot.png') 100% 100%
+		background-size 100% 100%
+		display block
+		width $dot
+		height $dot
+		position absolute
 		top 50%
 		margin-top -($dot/2)
 
@@ -287,6 +307,14 @@ nav.mobile.is-visible
 	opacity 1
 	visibility visible
 
+.secondary:hover, body#about .secondary
+	li
+		visibility visible
+		opacity 1
+	span
+		opacity 0
+		visibility hidden
+
 footer
 	hideselect()
 	transform(rotate(-90deg))
@@ -299,8 +327,6 @@ footer
 	text-align center
 
 #container
-	transition()
-	opacity 0
 	width 100%
 	height 100%
 	max-width 100vw
@@ -462,7 +488,7 @@ input:focus, textarea:focus
 .wrap.category.list
 	//margin-top 100px
 	width 100%
-	margin-left 80%
+	margin-left 24%
 	+below($desktop)
 		width 90%
 	.project
@@ -531,23 +557,30 @@ input:focus, textarea:focus
 .wrap.category.index
 	position fixed
 	top 0
-	left 100%
+	left 0
 	width 100%
 	height 100vh
 	background $primary
 	overflow-y scroll
 	margin-top 4vh
 	transition(left, 1000ms)
+	z-index 10
 	+below($desktop)
 		width 100%
+		padding-top 50px
+		margin-top 0
 	.index-btn.close
 		display block
 	.project
-		width 10%
-		height 13vh
+		width 14%
+		height 33vh
 		float left
-		margin 5vh 0
+		margin 7vh 0
 		text-align center
+		+below($desktop)
+			width 100%
+			height auto
+			margin 0 0 100px 0
 		.inner
 			position relative
 			width 100%
@@ -611,9 +644,9 @@ input:focus, textarea:focus
 	.ajax.hidden
 		top 100%
 
-body.indexOpened
+body.indexClosed
 	.wrap.category.index
-		left 0
+		left 100%
 		
 
 ////////////////////////////////////////// PROJECT
