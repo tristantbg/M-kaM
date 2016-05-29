@@ -14,9 +14,6 @@ $(function() {
                 $opening.click(function(event) {
                     $(this).addClass('closed');
                 });
-                if ($.cookie("intro") == 'seen') {
-                    $opening.remove();
-                }
                 if (!$.cookie("intro")) {
                     app.createCookie('intro', 'seen', 120);
                 }
@@ -28,11 +25,13 @@ $(function() {
                         }
                     });
                 }
+                if ($("header").hasClass('category')) {
+                    $("#container").css('opacity', '1');
+                }
                 $(window).load(function() {
                     app.sizeSet();
-                    //app.deferImages();
-                    
                     app.sliders();
+                    $("#container").css('opacity', '1');
                 });
                 $('#mce-error-response, #mce-success-response').bind("DOMSubtreeModified", function() {
                     $('form.validate .mc-field-group').hide();

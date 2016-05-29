@@ -107,9 +107,6 @@ a, a:hover, a:visited, a:focus
 	.inner
 		height 0
 
-.no-js .opening
-	display none
-
 header
 	width 100%
 	text-align center
@@ -331,6 +328,7 @@ footer
 	height 100%
 	max-width 100vw
 	max-height 100vh
+	opacity 0
 
 .loader
 	transition()
@@ -703,3 +701,11 @@ body.indexClosed
 footer, .rsThumbs, .fullscreen, .credits, header.desktop #m-production, header.desktop #m-creative, header.desktop .secondary
 	+below($desktop)
 		display none
+
+//// NO JS
+
+.no-js .opening
+	display none
+
+.no-js #container
+	opacity 1

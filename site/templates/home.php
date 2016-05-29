@@ -6,6 +6,13 @@
 	</div>
 </div>
 
+<script>
+	var cookieIntro = document.cookie.replace(/(?:(?:^|.*;\s*)intro\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+	if (cookieIntro == 'seen') {
+        $('.opening').remove();
+    }
+</script>
+
 <header class="home">
 
 <?php snippet('menu') ?>
