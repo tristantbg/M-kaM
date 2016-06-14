@@ -13,8 +13,10 @@
 
 					<?php if( !$media->placeholder()->empty() && !$media->url()->empty() ): ?>
 
-						<a class="rsImg" href="<?php echo resizeOnDemand($media->placeholder()->toFile(), 1200) ?>" data-rsVideo="<?php echo $media->url() ?>">
-							<img src="<?php echo resizeOnDemand($media->placeholder()->toFile(), 200) ?>" class="rsTmb" />
+						<?php $image = $media->placeholder()->toFile() ?>
+
+						<a class="rsImg" href="<?php echo resizeOnDemand($image, 1200) ?>" data-rsVideo="<?php echo $media->url() ?>">
+							<img src="<?php echo resizeOnDemand($image, 200) ?>" class="rsTmb"/>
 						</a>
 
 					<?php endif ?>
