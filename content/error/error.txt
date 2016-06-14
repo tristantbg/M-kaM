@@ -1,1 +1,5 @@
 Title: Error
+
+----
+
+Text: This page doesn't exist.

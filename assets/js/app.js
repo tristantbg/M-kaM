@@ -159,7 +159,7 @@ $(function() {
                     $('.ajax').removeClass('hidden');
                     $body.addClass('project');
                     setTimeout(function() {
-                        $('.loader').removeClass('loading');
+                        $('.loader, body').removeClass('loading');
                     }, 600);
                 });
             }
@@ -170,7 +170,7 @@ $(function() {
             $body.removeClass('project');
         },
         loadContent: function(url, target) {
-            $('.loader').addClass('loading');
+            $('.loader, body').addClass('loading');
             $.ajax({
                 url: url,
                 success: function(data) {

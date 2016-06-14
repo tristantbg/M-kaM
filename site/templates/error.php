@@ -1,31 +1,17 @@
 <?php snippet('header') ?>
 
-<div class="opening">
-	<img src="<?php echo url('assets/images/CMM_logo.svg') ?>" onerror="this.src='<?php echo url('assets/images/CMM_logo.png') ?>'; this.onerror=null;" alt="Code MM">
-</div>
-
-<header class="desktop home">
+<header class="page">
 
 <?php snippet('menu') ?>
 
-<div id="container">
+<div id="container" class="page">
 
-<div class="homeslider royalSlider rsDefault">
+<div class="wrap" id="page">
 
-<?php foreach($page->featuredimages()->toStructure() as $media): ?>
-	<?php if($media->_fieldset() == 'image'):?>
-		<?php if($media->imagefile()->toFile() !== null):?>
-			<?php 
-			$image = $media->imagefile()->toFile()->url();
-			?>
-			<a class="rsImg" href="<?php echo $image ?>"></a>
-		<?php endif ?>
-	<?php endif ?>
-<?php endforeach ?>
+<div class="inner"><?php echo $page->text()->kirbytext() ?></div>
+
+<div class="index-btn back"><a href="<?php echo $page->parent()->url() ?>">back</a></div>
 
 </div>
-
-<div class="wrap" id="home">
-
 
 <?php snippet('footer') ?>

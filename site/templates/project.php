@@ -13,8 +13,8 @@
 
 					<?php if( !$media->placeholder()->empty() && !$media->url()->empty() ): ?>
 
-						<a class="rsImg" href="<?php echo $media->placeholder()->toFile()->width(1200)->url() ?>" data-rsVideo="<?php echo $media->url() ?>">
-							<img src="<?php echo $media->placeholder()->toFile()->width(200)->url() ?>" class="rsTmb" />
+						<a class="rsImg" href="<?php echo resizeOnDemand($media->placeholder()->toFile(), 1200) ?>" data-rsVideo="<?php echo $media->url() ?>">
+							<img src="<?php echo resizeOnDemand($media->placeholder()->toFile(), 200) ?>" class="rsTmb" />
 						</a>
 
 					<?php endif ?>
@@ -24,7 +24,7 @@
 						<?php 
 						$image = $media->imagefile()->toFile();
 						?>
-						<a class="rsImg" href="<?php echo $image->width(1200)->url() ?>"><img src="<?php echo $image->width(200)->url() ?>" class="rsTmb" /></a>
+						<a class="rsImg" href="<?php echo resizeOnDemand($image, 1200) ?>"><img src="<?php echo resizeOnDemand($image, 200) ?>" class="rsTmb" /></a>
 					<?php endif ?>
 				<?php endif ?>
 			<?php endforeach ?>
