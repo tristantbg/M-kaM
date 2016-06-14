@@ -20,6 +20,9 @@ fields:
   keywords:
     label: Keywords
     type:  tags
+  mail:
+    label: Email contact
+    type: email
   customcss:
     label: Custom CSS
     type: textarea

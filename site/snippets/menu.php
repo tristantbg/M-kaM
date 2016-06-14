@@ -15,6 +15,9 @@ $menu = $pages->find('infos')->children()->visible();
 				<a class='overview'><span></span></a>
 			</div>
 		<?php endforeach ?>
+		<div class="category">
+			<a class="contact-link" href="mailto:<?php echo $site->mail() ?>">Contact</a>
+		</div>
 		</div>
 	</nav>
 

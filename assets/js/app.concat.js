@@ -3,7 +3,8 @@ var width = $(window).width(),
     height = $(window).height(),
     $body,
     pslide, hslide,
-    isMobile = false;
+    isMobile = false,
+    isScrolling = false;
 $(function() {
     var app = {
         init: function() {
@@ -18,10 +19,33 @@ $(function() {
                     app.createCookie('intro', 'seen', 120);
                 }
                 if ($(".wrap").hasClass('category')) {
-                    $("html, body").mousewheel(function(event, delta) {
+                    $index = $('.category.index');
+                    $("html, body").on('mousewheel', function(event, delta) {
                         if ($body.hasClass('indexClosed')) {
                             this.scrollLeft -= (delta);
                             event.preventDefault();
+                        } else if (!isMobile) {
+                            event.preventDefault();
+                            
+                            var dir = event.deltaY > 0 ? 'up' : 'down',
+                                vel = Math.abs(event.deltaY);
+                                var currentS = $index.scrollTop();
+
+                            if (dir == 'up' && !isScrolling && vel > 5) {
+                                $($index).scrollTo(currentS - height, 800);
+                                isScrolling = true;
+                                setTimeout(function() {
+                                    isScrolling = false;
+                                }, 900);
+                            }
+                            if (dir == 'down' && !isScrolling && vel > 5) {
+                                $($index).scrollTo(currentS + height, 800);
+                                isScrolling = true;
+                                setTimeout(function() {
+                                    isScrolling = false;
+                                }, 900);
+                            }
+                            //return false;
                         }
                     });
                 }

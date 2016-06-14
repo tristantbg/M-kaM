@@ -47,6 +47,76 @@ $projects = $page->children()->visible()->flip();
 
 	<?php endforeach ?>
 
+	<?php foreach($projects as $project): ?>
+			<div class="project">
+				<div class="inner link" data-target="<?php echo $project->url() ?>">
+
+					<?php if(!$project->featuredimage()->empty()):
+					$image = $project->featuredimage()->toFile();
+					?>
+					<img 
+					class="lazyload"
+					src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
+					data-src="<?php echo resizeOnDemand($image, 500) ?>" 
+					alt="<?php echo $project->title()->html() ?>">
+				<?php endif ?>
+
+				<div class="infos">
+					<div class="overlay_absolute">
+						<div class="overlay_table">
+
+							<div class="overlay_cell">
+								<a href="<?php echo $project->url() ?>">
+									<p><?php echo $project->title()->html() ?></p>
+									<p><?php echo $project->date('Y') ?></p>
+								</a>
+							</div>
+
+						</div>
+					</div>
+					<div class="overlay_background"></div>
+				</div>
+
+			</div>
+		</div>
+
+	<?php endforeach ?>
+
+	<?php foreach($projects as $project): ?>
+			<div class="project">
+				<div class="inner link" data-target="<?php echo $project->url() ?>">
+
+					<?php if(!$project->featuredimage()->empty()):
+					$image = $project->featuredimage()->toFile();
+					?>
+					<img 
+					class="lazyload"
+					src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
+					data-src="<?php echo resizeOnDemand($image, 500) ?>" 
+					alt="<?php echo $project->title()->html() ?>">
+				<?php endif ?>
+
+				<div class="infos">
+					<div class="overlay_absolute">
+						<div class="overlay_table">
+
+							<div class="overlay_cell">
+								<a href="<?php echo $project->url() ?>">
+									<p><?php echo $project->title()->html() ?></p>
+									<p><?php echo $project->date('Y') ?></p>
+								</a>
+							</div>
+
+						</div>
+					</div>
+					<div class="overlay_background"></div>
+				</div>
+
+			</div>
+		</div>
+
+	<?php endforeach ?>
+
 </div>
 
 		<div class="category wrap list">

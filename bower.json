@@ -19,6 +19,7 @@
   "dependencies": {
     "jquery": "~2.1.1",
     "lazysizes": "^1.4.0",
-    "jquery.cookie": "^1.4.1"
+    "jquery.cookie": "^1.4.1",
+    "jquery.scrollTo": "^2.1.2"
   }
 }
