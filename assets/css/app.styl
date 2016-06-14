@@ -213,7 +213,8 @@ header.reduced
 
 header.project, header.page, body.project
 	nav.primary
-		display none
+		opacity 0
+		visibility hidden
 
 .secondary
 	position fixed
@@ -692,6 +693,20 @@ body.indexClosed
 	flexbox()
 	align-items center
 	height 100vh
+
+body#about
+	#container
+		display block
+		overflow-y scroll
+	.wrap
+		width 80%
+		padding 50px 0
+		+above($desktop)
+			vendor(column-count, 4)
+		p
+			font-size 1rem
+			+above(1600px)
+				font-size 1.6rem
 	
 /////// MOBILE
 
