@@ -182,20 +182,23 @@ header.category
 header.category, header.reduced
 	nav.primary
 		.category
-			max-height 0
-			//opacity 0
-			transform(translateY(-20%))
+			+above($desktop)
+				max-height 0
+				//opacity 0
+				transform(translateY(-20%))
 		.category.active
 			max-height 3vw
-			//opacity 1
-			transform(translateY(0))
+			+above($desktop)
+				//opacity 1
+				transform(translateY(0))
 			+below($desktop)
 				max-height 3rem
 	nav.primary:hover
 		.category
 			max-height 3vw
-			//opacity 1
-			transform(translateY(0))
+			+above($desktop)
+				//opacity 1
+				transform(translateY(0))
 			+below($desktop)
 				max-height 3rem
 			
@@ -492,6 +495,7 @@ input:focus, textarea:focus
 	margin-left 24%
 	+below($desktop)
 		width 90%
+		display none
 	.project
 		height 100vh
 		width 50vw
