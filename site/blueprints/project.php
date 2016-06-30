@@ -23,9 +23,7 @@ fields:
     width: 1/3
   featuredimage:
     label: Image
-    type: select
-    options: images
-    mode:  single
+    type: image
     width: 1/3
   medias:
     label: Medias

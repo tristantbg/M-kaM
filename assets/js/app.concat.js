@@ -90,7 +90,7 @@ $(function() {
                 });
                 $('body').on('click', '.ajax .index-btn a', function(event) {
                     event.preventDefault();
-                    app.goIndex();
+                    app.goIndex($(this));
                 });
                 //ESC
                 $(document).keyup(function(e) {
@@ -164,8 +164,8 @@ $(function() {
                 });
             }
         },
-        goIndex: function() {
-            history.pushState(null, null, $(this).attr('href'));
+        goIndex: function(elem) {
+            history.pushState(null, null, elem.attr('href'));
             $('.ajax').addClass('hidden');
             $body.removeClass('project');
         },

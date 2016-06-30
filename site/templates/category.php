@@ -13,18 +13,16 @@ $projects = $page->children()->visible()->flip();
 		<div class="category wrap index">
 
 		<?php foreach($projects as $project): ?>
-			<div class="project">
-				<div class="inner link" data-target="<?php echo $project->url() ?>">
-
-					<?php if(!$project->featuredimage()->empty()):
+			<?php if(!$project->featuredimage()->empty()):
 					$image = $project->featuredimage()->toFile();
 					?>
+			<div class="project">
+				<div class="inner link" data-target="<?php echo $project->url() ?>">
 					<img 
 					class="lazyload"
 					src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" 
 					data-src="<?php echo resizeOnDemand($image, 500) ?>" 
 					alt="<?php echo $project->title()->html() ?>">
-				<?php endif ?>
 
 				<div class="infos">
 					<div class="overlay_absolute">
@@ -44,6 +42,7 @@ $projects = $page->children()->visible()->flip();
 
 			</div>
 		</div>
+		<?php endif ?>
 
 	<?php endforeach ?>
 
