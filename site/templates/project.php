@@ -40,7 +40,7 @@
 						$image = $media->imagefile()->toFile();
 						?>
 						<noscript>
-						<img src="<?php echo resizeOnDemand($image, 1200) ?>" alt="<?php echo $page->title()->html(); if (!$page->subtitle()->empty()) { echo ', '.$page->subtitle()->html(); } ?>">
+						<img src="<?php echo resizeOnDemand($image, 1200) ?>" alt="<?php echo $page->title()->html(); if (!$page->subtitle()->empty()) { echo ', '.$page->subtitle()->html(); } ?>" />
 						</noscript>
 					<?php endif ?>
 				<?php endif ?>
